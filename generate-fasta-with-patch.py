@@ -28,7 +28,8 @@ def write_fasta(df, base_filename):
                 row.seq))
     pools = sorted(df.pool.unique())
     for pool in pools:
-        with open("%s-pool-%s.fa" % (base_filename, pool), "w") as f:
+        pool_number = pool.split("_")[1]
+        with open("%s-pool%s.fa" % (base_filename, pool_number), "w") as f:
             df_pool = df[df.pool == pool]
             for name, row in df_pool.iterrows():
                 f.write(">%s length=%d\n%s\n" % (
